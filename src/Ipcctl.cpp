@@ -106,10 +106,14 @@ int ipc_setSensorstat(unsigned int unitFaultStat)
 int ipc_gettrack(unsigned int* trackstatus, float* trackposx, float* trackposy)
 {
 	int ret=0;
-	if(IMGstatus==NULL)
+	if(IMGstatus==NULL){
+		printf("IMGstatus=NULL\n");
 		return -1;
-	if(trackstatus==NULL||trackposx==NULL||trackposy==NULL)
+	}
+	if(trackstatus==NULL||trackposx==NULL||trackposy==NULL){
+		printf("trackstatus==NULL||trackposx==NULL||trackposy==NULL\n");
 		return -1;
+	}
 	ipc_status_P();
 
 	//ret = sharedMemoryLock(Ipc_Handl[IPC_SHA].IPCID);
