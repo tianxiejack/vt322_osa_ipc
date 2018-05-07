@@ -214,7 +214,7 @@ typedef struct{
 
 typedef struct{
 	volatile unsigned char AvtTrkStat;// eTrkMode 
-    volatile unsigned char TrkCmd;//only for ack trk mod
+    	volatile unsigned char TrkCmd;//only for ack trk mod
 }CMD_TRK;
 	
 typedef struct{
@@ -319,8 +319,8 @@ typedef struct{
 
 typedef struct{
     unsigned int m_trackstatus;// acq/trk/assi/lost
-     float m_trackpos_x;
-     float m_trackpos_y;
+     int m_trackpos_x;
+     int m_trackpos_y;
      unsigned int unitFaultStat;
 }IMGSTATUS;
 
