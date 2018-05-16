@@ -64,7 +64,7 @@ typedef enum
     IPC_SHA,		
     IPC_SEM,
     IPC_MAX
-}IPC_STATUS;
+}IPC_MTYPE;
 
 typedef enum 
 {
@@ -72,16 +72,35 @@ typedef enum
     IPC_Class_SHA,
     IPC_Class_SEM,
     IPC_ClassMAX
-    
-
 }IPC_Class;
 
-
 typedef enum {
-	ipc_eSen_TV	= 0x00,
-	ipc_eSen_FR    = 0x01,
-	ipc_eSen_Max   = 0x02
-}ipc_eSenserStat;
+	eSen_TV0	= 0x00,
+	eSen_TV1	= 0x01,
+	eSen_TV2   = 0x02,
+	eSen_TV3 	= 0x03,
+	eSen_FR1   = 0x04,
+	eSen_Max   = 0x05
+}eSenserStat;
+
+typedef enum img_zoom
+{
+    zoom_0 = 0x00,
+    zoom_2 = 0x02,
+    zoom_4 = 0x04,
+    zoom_8 = 0x08
+}ipc_img_zoom;
+
+typedef enum ipc_Dram_TrkAim
+{
+	IPC_AIM_NO1		= 0x00,
+	IPC_AIM_NO2		= 0x01,
+	IPC_AIM_NO3		= 0x02,
+	IPC_AIM_NO4		= 0x03,
+	IPC_AIM_NO5		= 0x04,
+	IPC_AIM_MAX		= 0x05,
+} ipc_eTrkAim;
+
 typedef enum {
 	ipc_ePicp_top_left = 0x00,
 	ipc_ePicp_top_right = 0x01,
@@ -103,13 +122,6 @@ typedef enum ipc_Dram_TrkType
 	IPC_CONTRAST_MODE	= 0x01,
 	IPC_CENTRE_MODE		= 0x02,
 } ipc_eTrkType;
-
-typedef enum ipc_Dram_TrkAim
-{
-	IPC_LARGE_AIM		= 0x00,
-	IPC_MIDDLE_AIM		= 0x01,
-	IPC_SMALL_AIM		= 0x02,
-} ipc_eTrkAim;
 
 typedef enum ipc_Dram_zoomCtrl
 {
@@ -203,12 +215,12 @@ typedef struct{
 
 
 typedef struct{
-	volatile unsigned char SensorStat;// eSenserStat 0-tv 1-fr
+	volatile unsigned char SensorStat;
 }CMD_SENSOR;
 
 typedef struct{
 	volatile unsigned char ImgPicp;
-	volatile unsigned char PicpSensorStat;// sensor src id range 0~3 or 0xFF no picp sens
+	volatile unsigned char PicpSensorStat;
 	volatile unsigned char PicpZoomStat;//pinp zoom
 }CMD_PinP;
 
@@ -260,8 +272,7 @@ typedef struct{
 }CMD_AIMXY;
 
 typedef struct{
-	volatile unsigned char TrkBomenCtrl; // osd Trk Aim
-	volatile unsigned char AvtTrkAimSize;//Aim  0-3
+	volatile unsigned char AvtTrkAimSize;
 }CMD_TRKDOOR;
 
 typedef struct{
@@ -288,7 +299,7 @@ typedef struct{
 }CMD_CROSSXY;
 
 typedef struct{
-    volatile unsigned char ImgZoomStat;// eImgAlgStat zoom 0:close 1:open
+    volatile unsigned char ImgZoomStat;
 }CMD_ZOOM;
 
 typedef struct{
