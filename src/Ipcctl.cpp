@@ -8,25 +8,24 @@
 IPC_Handl Ipc_Handl[IPC_MAX];
 
 IMGSTATUS * IMGstatus=NULL;
-unsigned char *IMGosd=NULL;
+
 void Ipc_init()
 {
-	Ipc_Handl[0].name=_PATH0_;
-	Ipc_Handl[0].Identify=IPC_TOIMG_MSG;
-	Ipc_Handl[0].Class=IPC_Class_MSG;
+	Ipc_Handl[IPC_TOIMG_MSG].name=_PATH0_;
+	Ipc_Handl[IPC_TOIMG_MSG].Identify=IPC_TOIMG_MSG;
+	Ipc_Handl[IPC_TOIMG_MSG].Class=IPC_Class_MSG;
 	
-	Ipc_Handl[1].name=_PATH1_;
-	Ipc_Handl[1].Identify=IPC_FRIMG_MSG;
-	Ipc_Handl[1].Class=IPC_Class_MSG;
+	Ipc_Handl[IPC_FRIMG_MSG].name=_PATH1_;
+	Ipc_Handl[IPC_FRIMG_MSG].Identify=IPC_FRIMG_MSG;
+	Ipc_Handl[IPC_FRIMG_MSG].Class=IPC_Class_MSG;
 	
-	Ipc_Handl[2].name=_PATH2_;
-	Ipc_Handl[2].Identify=IPC_SHA;
-	Ipc_Handl[2].Class=IPC_Class_SHA;
+	Ipc_Handl[IPC_SHA].name=_PATH2_;
+	Ipc_Handl[IPC_SHA].Identify=IPC_SHA;
+	Ipc_Handl[IPC_SHA].Class=IPC_Class_SHA;
 	
-
-	Ipc_Handl[3].name=_PATH3_;
-	Ipc_Handl[3].Identify=IPC_SEM;
-	Ipc_Handl[3].Class=IPC_Class_SEM;
+	Ipc_Handl[IPC_SEM].name=_PATH3_;
+	Ipc_Handl[IPC_SEM].Identify=IPC_SEM;
+	Ipc_Handl[IPC_SEM].Class=IPC_Class_SEM;
 
 }
 
@@ -71,6 +70,8 @@ void  ipc_status_V()
 	semSignal(Ipc_Handl[IPC_SEM].IPCID,0);
 }
 
+
+
 int ipc_settrack(unsigned int trackstatus, int trackposx, int trackposy)
 {
 	int ret=0;
@@ -78,9 +79,9 @@ int ipc_settrack(unsigned int trackstatus, int trackposx, int trackposy)
 		return -1;
 //	ret = sharedMemoryLock(Ipc_Handl[IPC_SHA].IPCID);
 	ipc_status_P();
-	IMGstatus->m_trackstatus=trackstatus;
-	IMGstatus->m_trackpos_x=trackposx;
-	IMGstatus->m_trackpos_y=trackposy;
+	IMGstatus->unitTrkStat=trackstatus;
+	IMGstatus->trkerrx=trackposx;
+	IMGstatus->trkerry=trackposy;
 	ipc_status_V();
 //	ret = sharedMemoryUnlock(Ipc_Handl[IPC_SHA].IPCID);
 
@@ -113,9 +114,9 @@ int ipc_gettrack(unsigned int* trackstatus, int* trackposx, int* trackposy)
 	ipc_status_P();
 
 	//ret = sharedMemoryLock(Ipc_Handl[IPC_SHA].IPCID);
-	*trackstatus=IMGstatus->m_trackstatus;
-	*trackposx=IMGstatus->m_trackpos_x;
-	*trackposy=IMGstatus->m_trackpos_y;
+	*trackstatus=IMGstatus->unitTrkStat;
+	*trackposx=IMGstatus->trkerrx;
+	*trackposy=IMGstatus->trkerry;
 	ipc_status_V();
 //	ret = sharedMemoryUnlock(Ipc_Handl[IPC_SHA].IPCID);
 
@@ -158,7 +159,7 @@ void Ipc_create()
 							if(Ipc_Handl[i].Identify==IPC_SHA)
 									{
 											key=sharedKeyGet(Ipc_Handl[i].name,Ipc_Handl[i].Identify);
-											Ipc_Handl[i].IPCID=sharedMemoryCreateOrGet(key,SHMEMSTATUSSIZE);
+											Ipc_Handl[i].IPCID=sharedMemoryCreateOrGet(key,sizeof(IMGSTATUS));
 											IMGstatus=(IMGSTATUS *)sharedMemoryAttach(Ipc_Handl[i].IPCID);
 									}
 					}
