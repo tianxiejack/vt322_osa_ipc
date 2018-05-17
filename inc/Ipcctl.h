@@ -18,6 +18,7 @@
 #define MMTNUM 10
 #define PARAMLEN 12
 
+
 typedef enum 
 {
     sensor,  /*0*/
@@ -38,6 +39,12 @@ typedef enum
     invalid
 }CMD_ID;
 
+
+typedef enum 
+{
+	shm_rdonly,
+	shm_rdwr
+}shm_perms;
 
 typedef enum
 {
@@ -499,10 +506,12 @@ void* recv_msg(SENDST *RS422);
 int send_msg(SENDST *RS422);
 int  send_msgpth(SENDST * RS422);
 void Ipc_init();
-void Ipc_create();
+void Ipc_create(int shm_perm);
 void Ipc_uninit();
 void  ipc_status_P();
 void  ipc_status_V();
+IMGSTATUS *ipc_getimgstatus_p();
+IMGSTATUS ipc_getimgstatus();
 
 
 #endif

@@ -141,8 +141,21 @@ int ipc_getSensorstat(unsigned int* unitFaultStat)
 	return ret;
 }
 
+IMGSTATUS *ipc_getimgstatus_p()
+{
+	return IMGstatus;
+}
 
-void Ipc_create()
+IMGSTATUS ipc_getimgstatus()
+{
+	IMGSTATUS imgstatus;
+	ipc_status_P();
+	memcpy(&imgstatus, IMGstatus, sizeof(IMGSTATUS));
+	ipc_status_V();
+	return imgstatus;
+}
+
+void Ipc_create(int shm_perm)
 {
 	for(int i=0;i<IPC_MAX;i++)
 		{
@@ -160,7 +173,7 @@ void Ipc_create()
 									{
 											key=sharedKeyGet(Ipc_Handl[i].name,Ipc_Handl[i].Identify);
 											Ipc_Handl[i].IPCID=sharedMemoryCreateOrGet(key,sizeof(IMGSTATUS));
-											IMGstatus=(IMGSTATUS *)sharedMemoryAttach(Ipc_Handl[i].IPCID);
+											IMGstatus=(IMGSTATUS *)sharedMemoryAttach(Ipc_Handl[i].IPCID,shm_perm);
 									}
 					}
 				else if(Ipc_Handl[i].Class==IPC_Class_SEM)

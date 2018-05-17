@@ -1,6 +1,7 @@
 #include "SharedMemoryWrapper.h"
 #include <stdio.h>
  #include <string.h>
+ #include "Ipcctl.h"
 
 key_t sharedKeyGet(char *path,int proj_id)
 {
@@ -37,14 +38,20 @@ int sharedMemoryCreateOrGet(key_t key, int size)
 	int shmid;
 
 	/* If memory has already been created.. then just get it: */
-	if ((shmid = shmget(key, size, IPC_CREAT | IPC_EXCL | 0666)) == -1)
-	{
-		if( errno != EEXIST )
-			return -1;
 
-		if ((shmid = shmget(key, size, 0666)) == -1)
-			return -1;
-	}
+		//if ((shmid = shmget(key, size, IPC_CREAT | IPC_EXCL | 0666)) == -1)
+		if ((shmid = shmget(key, size, IPC_CREAT | 0666)) == -1)
+		{
+			if( errno != EEXIST )
+			{
+				return -1;
+			}
+
+			if ((shmid = shmget(key, size, 0666)) == -1)
+			{
+				return -1;
+			}
+		}
 
 	return shmid;
 }
@@ -60,9 +67,12 @@ int sharedMemoryCreateIfGone(key_t key, int size)
 	return shmid;
 }
 
-void* sharedMemoryAttach(int shmid)
+void* sharedMemoryAttach(int shmid,int shm_perm)
 {
-	return shmat(shmid, 0, 0);
+	if(shm_rdonly == shm_perm)
+		return shmat(shmid, 0, SHM_RDONLY);
+	else if(shm_rdwr == shm_perm)
+		return shmat(shmid, 0, 0);
 }
 
 int sharedMemoryDetatch(const void* shmaddr)

@@ -12,7 +12,7 @@ int sharedMemoryCreateIfGone(key_t key, int size);
 int sharedMemoryDelete(int shmid);
 
 /* Attach / detach memory from process: */
-void* sharedMemoryAttach(int shmid);
+void* sharedMemoryAttach(int shmid,int shm_perm);
 int sharedMemoryDetatch(const void* shmaddr);
 
 /* Prevent shared memory from being swapped in / out: */
