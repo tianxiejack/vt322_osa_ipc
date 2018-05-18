@@ -82,11 +82,11 @@ typedef enum
 }IPC_Class;
 
 typedef enum {
-        ipc_eSen_TV0 = 0x00,
-        ipc_eSen_TV1 = 0x01,
-        ipc_eSen_TV2 = 0x02,
-        ipc_eSen_TV3 = 0x03,
-        ipc_eSen_FR1 = 0x04,
+        ipc_eSen_CH0 = 0x00,
+        ipc_eSen_CH1 = 0x01,
+        ipc_eSen_CH2 = 0x02,
+        ipc_eSen_CH3 = 0x03,
+        ipc_eSen_CH4 = 0x04,
         ipc_eSen_Max = 0x05
 }ipc_eSenserStat;
 
