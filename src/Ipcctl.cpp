@@ -79,7 +79,7 @@ int ipc_settrack(unsigned int trackstatus, int trackposx, int trackposy)
 		return -1;
 //	ret = sharedMemoryLock(Ipc_Handl[IPC_SHA].IPCID);
 	ipc_status_P();
-	IMGstatus->unitTrkStat=trackstatus;
+	IMGstatus->TrkStat=trackstatus;
 	IMGstatus->trkerrx=trackposx;
 	IMGstatus->trkerry=trackposy;
 	ipc_status_V();
@@ -114,7 +114,7 @@ int ipc_gettrack(unsigned int* trackstatus, int* trackposx, int* trackposy)
 	ipc_status_P();
 
 	//ret = sharedMemoryLock(Ipc_Handl[IPC_SHA].IPCID);
-	*trackstatus=IMGstatus->unitTrkStat;
+	*trackstatus=IMGstatus->TrkStat;
 	*trackposx=IMGstatus->trkerrx;
 	*trackposy=IMGstatus->trkerry;
 	ipc_status_V();
