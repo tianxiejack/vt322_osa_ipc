@@ -6,6 +6,7 @@
 #define _PATH2_ "/"
 #define _PATH3_ "/"
 #define _PATH4_ "/"
+#define _PATH5_ "/"
 
 #define SHMEMSTATUSSIZE 200
 #define SHMEMFRAMESIZE 10485760
@@ -29,6 +30,7 @@ typedef enum
     mmtselect,/*11*/
     axismove,/*12*/
     read_shm_trkpos,/*13*/
+    read_shm_config,
     exit_img,
     invalid
 }CMD_ID;
@@ -64,6 +66,7 @@ typedef enum
     IPC_FRIMG_MSG,		// CLIENT TO SERCER
     IPC_SHA,
     IPC_OSD_SHA,
+    IPC_UTCTRK_SHA,
     IPC_SEM,
     IPC_MAX
 }IPC_MTYPE;
@@ -456,6 +459,72 @@ typedef struct {
 	int bomen5_height;
 }OSDSTATUS;
 
+typedef struct {
+	float occlusion_thred;//9--0
+	float retry_acq_thred;
+	float up_factor;
+	int res_distance;
+	int res_area;
+	int gapframe;
+	bool enhEnable;
+	float cliplimit;
+	bool dictEnable;
+	int moveX;
+	int moveY;
+	int moveX2;
+	int moveY2;
+	int segPixelX;
+	int segPixelY;
+	bool  algOsdRect_Enable;  //9--15
+	
+	int	ScalerLarge;//10--0
+	int	ScalerMid; 
+	int	ScalerSmall;
+	int	Scatter;
+	float	ratio;
+	bool	FilterEnable;
+	bool	BigSecEnable;
+	int	SalientThred;
+	bool	ScalerEnable;
+	bool	DynamicRatioEnable;
+	int	acqSize_width;
+	int	acqSize_height;
+	bool	TrkAim43_Enable;
+	bool	SceneMVEnable;
+	bool	BackTrackEnable;
+	int	bAveTrkPos; //10--15
+
+	float	fTau; //11--0
+	int	buildFrms;
+	int	LostFrmThred;
+	float	histMvThred;
+	int	detectFrms;
+	int	stillFrms;
+	float	stillThred;
+	bool	bKalmanFilter;
+	float	xMVThred;
+	float	yMVThred;
+	float	xStillThred;
+	float	yStillThred;
+	float	slopeThred;
+	float	kalmanHistThred;
+	float	kalmanCoefQ;
+	float	kalmanCoefR; //11--15
+
+	int Enhmod_0; //12--0
+	float Enhparm_1;
+	int Mmtdparm_2;
+	int Mmtdparm_3;
+	int Mmtdparm_4;
+	int Mmtdparm_5;
+	int Mmtdparm_6;
+	float Mmtdparm_7;
+	int Mmtdparm_8; //12--8
+
+}UTCTRKSTATUS;
+
+
+
 typedef struct out_frame_angle
 {
     volatile unsigned char out_frame_angle_a[3];
@@ -528,6 +597,7 @@ void  ipc_status_V();
 IMGSTATUS *ipc_getimgstatus_p();
 IMGSTATUS ipc_getimgstatus();
 OSDSTATUS *ipc_getosdstatus_p();
+UTCTRKSTATUS *ipc_getutstatus_p();
 
 
 #endif
