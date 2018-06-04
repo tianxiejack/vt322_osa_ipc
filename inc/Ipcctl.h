@@ -29,11 +29,12 @@ typedef enum
     mmt,/*10*/
     mmtselect,/*11*/
     axismove,/*12*/
-    read_shm_trkpos,/*13*/
+    read_shm_trkpos,/*13*/.
     read_shm_config,
     read_shm_osd,
     read_shm_utctrk,
     read_shm_camera,
+    elecZoom,
     exit_img,
     invalid
 }CMD_ID;
