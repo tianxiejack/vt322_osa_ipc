@@ -345,17 +345,17 @@ typedef struct
 	volatile int aimRectMoveStepX;
 	volatile int aimRectMoveStepY;
 	volatile int validChId;
-	volatile int opticAxisPosX[eSen_Max];	//may be same to unitAxisX[eSen_Max]
-	volatile int opticAxisPosY[eSen_Max];
-	volatile int AxisPosX[eSen_Max];	
-	volatile int AxisPosY[eSen_Max];
-	volatile int AvtPosX[eSen_Max];	//target avt x,y for each channel
-	volatile int AvtPosY[eSen_Max];
+	volatile int opticAxisPosX[ipc_eSen_Max];	//may be same to unitAxisX[eSen_Max]
+	volatile int opticAxisPosY[ipc_eSen_Max];
+	volatile int AxisPosX[ipc_eSen_Max];	
+	volatile int AxisPosY[ipc_eSen_Max];
+	volatile int AvtPosX[ipc_eSen_Max];	//target avt x,y for each channel
+	volatile int AvtPosY[ipc_eSen_Max];
 	
-	volatile int AcqRectW[eSen_Max];
-	volatile int AcqRectH[eSen_Max];
-	volatile int AimW[eSen_Max];
-	volatile int AimH[eSen_Max];
+	volatile int AcqRectW[ipc_eSen_Max];
+	volatile int AcqRectH[ipc_eSen_Max];
+	volatile int AimW[ipc_eSen_Max];
+	volatile int AimH[ipc_eSen_Max];
 	volatile int crossAxisWidth;
 	volatile int crossAxisHeight;
 	volatile int picpCrossAxisWidth;
@@ -375,7 +375,7 @@ typedef struct
 	volatile unsigned char  SysMode; 		// 0 --- init ; 1 ---normal  2---settiing
 	volatile unsigned char  FovCtrl; 
 	volatile unsigned char  FovStat;       /* 1 byte ext-input fov:0 Large fov ,1 midle fov,2 small fov,3 electric x2 fov */
-	volatile float  unitFovAngle[eSen_Max];
+	volatile float  unitFovAngle[ipc_eSen_Max];
 	
 	volatile unsigned int TrkStatpri;
 	volatile unsigned int TrkStat;     // acp/trk/assi/lost
@@ -406,27 +406,27 @@ typedef struct
 	volatile unsigned int  PicpSensorStat;  		
 	volatile unsigned int  PicpSensorStatpri; 		
 	volatile unsigned int  PicpPosStat;			
-	volatile unsigned int  ImgZoomStat[eSen_Max];   	
-	volatile unsigned int  ImgEnhStat[eSen_Max];    	
-	volatile unsigned int  ImgBlobDetect[eSen_Max];    
-	volatile unsigned int  ImgFrezzStat[eSen_Max];    	
-	volatile unsigned int  ImgVideoTrans[eSen_Max]; 
-	volatile unsigned int  ImgPicp[eSen_Max];   	
+	volatile unsigned int  ImgZoomStat[ipc_eSen_Max];   	
+	volatile unsigned int  ImgEnhStat[ipc_eSen_Max];    	
+	volatile unsigned int  ImgBlobDetect[ipc_eSen_Max];    
+	volatile unsigned int  ImgFrezzStat[ipc_eSen_Max];    	
+	volatile unsigned int  ImgVideoTrans[ipc_eSen_Max]; 
+	volatile unsigned int  ImgPicp[ipc_eSen_Max];   	
 
 	volatile unsigned int  MmtValid;    			
 	volatile unsigned int  MmtPixelX;
 	volatile unsigned int  MmtPixelY;
-	volatile unsigned int  MmtStat[eSen_Max];    	
-	volatile unsigned int  MmtSelect[eSen_Max];
+	volatile unsigned int  MmtStat[ipc_eSen_Max];    	
+	volatile unsigned int  MmtSelect[ipc_eSen_Max];
 
 	volatile unsigned char  MMTTempStat;		//ack mmt stat
 	volatile unsigned char  Mmttargetnum; 			
 
-	volatile unsigned char  MtdState[eSen_Max];	//record moving obj detect state of each channel
+	volatile unsigned char  MtdState[ipc_eSen_Max];	//record moving obj detect state of each channel
 
 	/***** cmd osd part *****/
-	volatile unsigned int  DispGrp[eSen_Max];       	// eDispGrade
-	volatile unsigned int  DispColor[eSen_Max];  	// eOSDColor or eGRPColor
+	volatile unsigned int  DispGrp[ipc_eSen_Max];       	// eDispGrade
+	volatile unsigned int  DispColor[ipc_eSen_Max];  	// eOSDColor or eGRPColor
 	
 	//don't know the usage
 	volatile unsigned int  TrkCoastCount;
@@ -436,7 +436,7 @@ typedef struct
 	volatile unsigned int  TvCollimation;   //dianshi zhunzhi   not understanding
 	volatile unsigned int  FrCollimation;   //rexiang zhunzhi
 	
-	volatile unsigned int  	ImgMmtshow[eSen_Max];	//not sure show what
+	volatile unsigned int  	ImgMmtshow[ipc_eSen_Max];	//not sure show what
 	volatile unsigned char 	MmtOffsetXY[20]; 		//not sure the func
 	
 } IMGSTATUS;
