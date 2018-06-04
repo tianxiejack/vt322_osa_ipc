@@ -216,9 +216,9 @@ typedef struct{
 
 typedef struct{
     volatile unsigned char unitFaultStat;/*0:FR ok,TV ok; 1:FR ok,TV err; 2:FR err,TV ok; 3:FR err,TV err*/
-    volatile unsigned char ComStat;/*主通信状态，0正常，1故障*/
-    volatile unsigned char RomdeviceStat;/*存储设备状态：0正常，1故障*/
-    volatile unsigned char GPUStat;/*GPU状态：0正常，1故障*/
+    volatile unsigned char ComStat;/*\u4e3b\u901a\u4fe1\u72b6\u6001\uff0c0\u6b63\u5e38\uff0c1\u6545\u969c*/
+    volatile unsigned char RomdeviceStat;/*\u5b58\u50a8\u8bbe\u5907\u72b6\u6001\uff1a0\u6b63\u5e38\uff0c1\u6545\u969c*/
+    volatile unsigned char GPUStat;/*GPU\u72b6\u6001\uff1a0\u6b63\u5e38\uff0c1\u6545\u969c*/
 }CMD_AUTOCHECK;
 
 
@@ -450,16 +450,18 @@ typedef struct {
 	int ch3_acqRect_height;
 	int ch4_acqRect_height;
 	int ch5_acqRect_height;
-	int bomen1_width;
-	int bomen2_width;
-	int bomen3_width;
-	int bomen4_width;
-	int bomen5_width;
-	int bomen1_height;
-	int bomen2_height;	// 14 -- 15
-	int bomen3_height;	// 15 -- 0
-	int bomen4_height;
-	int bomen5_height;
+	int ch0_aim_width;
+	int ch1_aim_width;
+	int ch2_aim_width;
+	int ch3_aim_width;
+	int ch4_aim_width;
+	int ch5_aim_width;
+	int ch0_aim_height;
+	int ch1_aim_height;	
+	int ch2_aim_height;
+	int ch3_aim_height;
+	int ch4_aim_height;
+	int ch5_aim_height;
 }OSDSTATUS;
 
 typedef struct {
