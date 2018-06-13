@@ -10,6 +10,7 @@ IPC_Handl Ipc_Handl[IPC_MAX];
 IMGSTATUS * IMGstatus=NULL;
 OSDSTATUS *OSDstatus=NULL;
 UTCTRKSTATUS *UTCTRKstatus=NULL;
+LKOSDSTATUS *LKOSDstatus = NULL;
 
 void Ipc_init()
 {
@@ -32,8 +33,12 @@ void Ipc_init()
 	Ipc_Handl[IPC_UTCTRK_SHA].name=_PATH4_;
 	Ipc_Handl[IPC_UTCTRK_SHA].Identify=IPC_UTCTRK_SHA;
 	Ipc_Handl[IPC_UTCTRK_SHA].Class=IPC_Class_SHA;
+
+	Ipc_Handl[IPC_UTCTRK_SHA].name=_PATH5_;
+	Ipc_Handl[IPC_UTCTRK_SHA].Identify=IPC_LKOSD_SHA;
+	Ipc_Handl[IPC_UTCTRK_SHA].Class=IPC_Class_SHA;
 	
-	Ipc_Handl[IPC_SEM].name=_PATH5_;
+	Ipc_Handl[IPC_SEM].name=_PATH6_;
 	Ipc_Handl[IPC_SEM].Identify=IPC_SEM;
 	Ipc_Handl[IPC_SEM].Class=IPC_Class_SEM;
 
@@ -165,6 +170,10 @@ UTCTRKSTATUS *ipc_getutstatus_p()
 {
 	return UTCTRKstatus;
 }
+LKOSDSTATUS *ipc_getlkosdstatus_p()
+{
+	return LKOSDstatus;
+}
 
 
 IMGSTATUS ipc_getosdstatus()
@@ -207,6 +216,12 @@ void Ipc_create(int *shm_perm)
 											key=sharedKeyGet(Ipc_Handl[i].name,Ipc_Handl[i].Identify);
 											Ipc_Handl[i].IPCID=sharedMemoryCreateOrGet(key,sizeof(UTCTRKSTATUS));
 											UTCTRKstatus=(UTCTRKSTATUS *)sharedMemoryAttach(Ipc_Handl[i].IPCID,shm_perm[Ipc_Handl[i].Identify]);
+									}
+							else if(Ipc_Handl[i].Identify==IPC_LKOSD_SHA)
+									{
+											key=sharedKeyGet(Ipc_Handl[i].name,Ipc_Handl[i].Identify);
+											Ipc_Handl[i].IPCID=sharedMemoryCreateOrGet(key,sizeof(LKOSDSTATUS));
+											LKOSDstatus=(LKOSDSTATUS *)sharedMemoryAttach(Ipc_Handl[i].IPCID,shm_perm[Ipc_Handl[i].Identify]);
 									}
 					}
 				else if(Ipc_Handl[i].Class==IPC_Class_SEM)
