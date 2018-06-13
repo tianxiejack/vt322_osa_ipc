@@ -34,9 +34,9 @@ void Ipc_init()
 	Ipc_Handl[IPC_UTCTRK_SHA].Identify=IPC_UTCTRK_SHA;
 	Ipc_Handl[IPC_UTCTRK_SHA].Class=IPC_Class_SHA;
 
-	Ipc_Handl[IPC_UTCTRK_SHA].name=_PATH5_;
-	Ipc_Handl[IPC_UTCTRK_SHA].Identify=IPC_LKOSD_SHA;
-	Ipc_Handl[IPC_UTCTRK_SHA].Class=IPC_Class_SHA;
+	Ipc_Handl[IPC_OSD_SHA].name=_PATH5_;
+	Ipc_Handl[IPC_OSD_SHA].Identify=IPC_LKOSD_SHA;
+	Ipc_Handl[IPC_OSD_SHA].Class=IPC_Class_SHA;
 	
 	Ipc_Handl[IPC_SEM].name=_PATH6_;
 	Ipc_Handl[IPC_SEM].Identify=IPC_SEM;
