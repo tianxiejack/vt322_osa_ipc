@@ -48,8 +48,9 @@ typedef enum
     acqBox,/*28*/
     Iris,/*29*/
     focus,/*30*/
-    menu,/*31*/
-    read_shm_lkosd,/*32*/
+    exit_IrisAndFocus,/*31*/
+    menu,/*32*/
+    read_shm_lkosd,/*33*/
     invalid
 }CMD_ID;
 
