@@ -51,6 +51,7 @@ typedef enum
     exit_IrisAndFocus,/*31*/
     menu,/*32*/
     read_shm_lkosd,/*33*/
+    mmtLock,/*34*/
     invalid
 }CMD_ID;
 
