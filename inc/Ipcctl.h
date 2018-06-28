@@ -45,8 +45,11 @@ typedef enum
     osdfont,/*25*/
     osdsize,/*26*/
     osdctrl,/*27*/
-    acqBox,
-    read_shm_lkosd,
+    acqBox,/*28*/
+    Iris,/*29*/
+    focus,/*30*/
+    menu,/*31*/
+    read_shm_lkosd,/*32*/
     invalid
 }CMD_ID;
 
