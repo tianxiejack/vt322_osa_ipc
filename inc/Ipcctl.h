@@ -13,6 +13,7 @@
 #define SHMEMFRAMESIZE 10485760
 #define MMTNUM 10
 #define PARAMLEN 12
+#define OSDBUFSIZE 128
 
 
 typedef enum 
@@ -41,17 +42,23 @@ typedef enum
     sensor_video_trans,/*21*/
     vframerate,/*22*/
     vquality,/*23*/
+
     osdcolor,/*24*/
     osdfont,/*25*/
     osdsize,/*26*/
     osdctrl,/*27*/
-    acqBox,/*28*/
-    Iris,/*29*/
-    focus,/*30*/
-    exit_IrisAndFocus,/*31*/
-    menu,/*32*/
-    read_shm_lkosd,/*33*/
-    mmtLock,/*34*/
+    osdID,/*28*/
+    osdPOS,/*29*/
+    osdAlpha,/*30*/
+    osdBuf,/*31*/
+
+    acqBox,/*32*/
+    Iris,/*33*/
+    focus,/*34*/
+    exit_IrisAndFocus,/*35*/
+    menu,/*36*/
+    read_shm_lkosd,/*37*/
+    mmtLock,/*38*/
     invalid
 }CMD_ID;
 
@@ -356,9 +363,29 @@ typedef struct{
     volatile unsigned char ctrl;
 }CMD_OSDCTRL;
 
+
+typedef struct{
+    volatile unsigned char id;
+}CMD_OSDID;
+
+typedef struct{
+    volatile unsigned char pos_X;
+    volatile unsigned char pos_Y;
+}CMD_OSDPOS;
+
+typedef struct{
+    volatile unsigned char alpha;
+}CMD_OSDALPHA;
+
+
+typedef struct{
+     char* buf;
+}CMD_OSDBUF;
+
 typedef struct{
     unsigned char cmd_ID;
 	unsigned char param[PARAMLEN];
+	char osdbuf[OSDBUFSIZE];
 }SENDST;
 
 typedef struct{
