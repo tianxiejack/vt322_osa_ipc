@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define MESSAGE_SIZE 64
+#define MESSAGE_SIZE 256
 typedef struct Message {
 	long mtype;
 	char buffer[MESSAGE_SIZE];

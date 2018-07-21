@@ -12,8 +12,8 @@
 #define SHMEMSTATUSSIZE 200
 #define SHMEMFRAMESIZE 10485760
 #define MMTNUM 10
-#define PARAMLEN 128
-//#define OSDBUFSIZE 128
+#define PARAMLEN 12
+#define OSDBUFSIZE 128
 
 
 typedef enum 
@@ -385,7 +385,7 @@ typedef struct{
 typedef struct{
     unsigned char cmd_ID;
 	unsigned char param[PARAMLEN];
-	//char osdbuf[OSDBUFSIZE];
+	char osdbuf[OSDBUFSIZE];
 }SENDST;
 
 typedef struct{

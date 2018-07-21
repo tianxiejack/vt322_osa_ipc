@@ -53,7 +53,7 @@ int ipc_sendmsg(SENDST* Param,int Mesgthe )
 	int mtype=1;
 	//buffer[0]=Param->param1;
 	//buffer[1]=Param->param2;
-       memcpy(buffer,Param,sizeof(SENDST));
+    memcpy(buffer,Param,sizeof(SENDST));
 	setMessage(&msg, buffer, MESSAGE_SIZE, mtype);
 	/* Send message: */
 	ret = messageQueueSend(Ipc_Handl[Mesgthe].IPCID, &msg);
