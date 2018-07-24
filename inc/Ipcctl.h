@@ -369,18 +369,14 @@ typedef struct{
 }CMD_OSDID;
 
 typedef struct{
-    volatile unsigned char pos_X;
-    volatile unsigned char pos_Y;
+    volatile short pos_X;
+    volatile short pos_Y;
 }CMD_OSDPOS;
 
 typedef struct{
     volatile unsigned char alpha;
 }CMD_OSDALPHA;
 
-
-typedef struct{
-     char* buf;
-}CMD_OSDBUF;
 
 typedef struct{
     unsigned char cmd_ID;
