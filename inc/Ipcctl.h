@@ -51,6 +51,7 @@ typedef enum
     menu,
     read_shm_lkosd,
     mmtLock,
+    BoresightPos,
     invalid
 }CMD_ID;
 
@@ -311,6 +312,11 @@ typedef struct{
 }CMD_POSMOVE;
 
 typedef struct{
+	volatile unsigned int BoresightPos_x;
+	volatile unsigned int BoresightPos_y;
+}CMD_BoresightPos;
+
+typedef struct{
 	volatile unsigned char unitTrkX1;// for report and osd text x1
 	volatile unsigned char unitTrkX2;// for report and osd text x2
 	volatile unsigned char unitTrkY1;// for report and osd text y1
@@ -445,10 +451,8 @@ typedef struct
 
 	/***** cmd stat part *****/
 	volatile unsigned int SensorStatBegin;
-
-	volatile unsigned int  SensorStat;   
-	volatile unsigned int  SensorStatpri;    		
-
+	volatile unsigned int  SensorStat; 
+	volatile unsigned int  SensorStatpri;       		
 	volatile unsigned int  changeSensorFlag;
 	volatile unsigned int  PicpSensorStat;  		
 	volatile unsigned int  PicpSensorStatpri; 		
