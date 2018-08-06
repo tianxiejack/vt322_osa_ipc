@@ -53,6 +53,7 @@ typedef enum
     mmtLock,
     BoresightPos,
     trktype,
+    AcqPos,
     invalid
 }CMD_ID;
 
@@ -262,6 +263,11 @@ typedef struct{
 	volatile  int ImgPixelX; //SecTrk X
 	volatile  int ImgPixelY; //SecTrk Y
 }CMD_SECTRK;
+
+typedef struct{
+	volatile unsigned int BoresightPos_x;
+	volatile unsigned int BoresightPos_y;
+}CMD_AcqBoxPos;
 
 typedef struct{
     volatile unsigned char ImgEnhStat;// eImgAlgStat enh 0:close 1:open
