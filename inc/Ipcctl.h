@@ -52,6 +52,7 @@ typedef enum
     read_shm_lkosd,
     mmtLock,
     BoresightPos,
+    trktype,
     invalid
 }CMD_ID;
 
