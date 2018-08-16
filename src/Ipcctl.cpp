@@ -87,7 +87,7 @@ void  ipc_status_V()
 
 
 
-int ipc_settrack(unsigned int trackstatus, int trackposx, int trackposy)
+int ipc_settrack(unsigned int trackstatus, float trackposx, float trackposy)
 {
 	int ret=0;
 	if(IMGstatus==NULL)
@@ -119,7 +119,7 @@ int ipc_setSensorstat(unsigned int unitFaultStat)
 }
 
 
-int ipc_gettrack(unsigned int* trackstatus, int* trackposx, int* trackposy)
+int ipc_gettrack(unsigned int* trackstatus, float* trackposx, float* trackposy)
 {
 	int ret=0;
 	if(IMGstatus==NULL)
