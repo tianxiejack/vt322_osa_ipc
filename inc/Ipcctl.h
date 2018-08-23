@@ -55,6 +55,7 @@ typedef enum
     algosdrect,
     ipcwordFont,
     ipcwordSize,
+	ipclosttime,
     invalid
 }CMD_ID;
 
