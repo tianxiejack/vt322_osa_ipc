@@ -41,9 +41,7 @@ typedef enum
     sensor_video_trans,/*21*/
     vframerate,/*22*/
     vquality,/*23*/
-
     osdbuffer,
-
     acqBox,
     Iris,
     focus,
@@ -51,6 +49,12 @@ typedef enum
     menu,
     read_shm_lkosd,
     mmtLock,
+    BoresightPos,
+    trktype,
+    AcqPos,
+    algosdrect,
+    wordFont,
+    wordSize,
     invalid
 }CMD_ID;
 
@@ -60,6 +64,11 @@ typedef enum
 	shm_rdonly,
 	shm_rdwr
 }shm_perms;
+
+typedef struct{
+	volatile int dir;
+	volatile int alpha;
+}CMD_triangle;
 
 typedef enum
 {
@@ -262,6 +271,12 @@ typedef struct{
 }CMD_SECTRK;
 
 typedef struct{
+	volatile unsigned char AcqStat;
+	volatile unsigned int BoresightPos_x;
+	volatile unsigned int BoresightPos_y;
+}CMD_AcqBoxPos;
+
+typedef struct{
     volatile unsigned char ImgEnhStat;// eImgAlgStat enh 0:close 1:open
 }CMD_ENH;
 
@@ -309,6 +324,11 @@ typedef struct{
 	volatile unsigned char AvtMoveX;// eTrkRefine (axis or aim) x
 	volatile unsigned char AvtMoveY;// eTrkRefine (axis or aim) y
 }CMD_POSMOVE;
+
+typedef struct{
+	volatile unsigned int BoresightPos_x;
+	volatile unsigned int BoresightPos_y;
+}CMD_BoresightPos;
 
 typedef struct{
 	volatile unsigned char unitTrkX1;// for report and osd text x1
@@ -369,6 +389,9 @@ typedef struct{
     volatile unsigned char alpha;
 }CMD_OSDALPHA;
 
+typedef struct{
+	volatile unsigned char Imgalgosdrect;
+}CMD_ALGOSDRECT;
 
 typedef struct{
     unsigned char cmd_ID;
@@ -400,12 +423,13 @@ typedef struct
 	volatile int AcqRectH[ipc_eSen_Max];
 	volatile int AimW[ipc_eSen_Max];
 	volatile int AimH[ipc_eSen_Max];
-	volatile int crossAxisWidth;
-	volatile int crossAxisHeight;
+	volatile int crossAxisWidth[ipc_eSen_Max];
+	volatile int crossAxisHeight[ipc_eSen_Max];
 	volatile int picpCrossAxisWidth;
 	volatile int picpCrossAxisHeight;
 	volatile bool osdTextShow;
 	volatile bool osdDrawShow;
+	volatile bool crossDrawShow;
 	volatile int osdTextColor;
 	volatile int osdTextAlpha;
 	volatile int osdTextFont;
@@ -440,15 +464,13 @@ typedef struct
 	volatile unsigned int  AvtTrkCoast;
 	volatile unsigned int  TrkErrFeedback;  	// eTrkMode 
 
-	volatile int  trkerrx;
-	volatile int  trkerry;	
+	volatile float  trkerrx;
+	volatile float  trkerry;	
 
 	/***** cmd stat part *****/
 	volatile unsigned int SensorStatBegin;
-
-	volatile unsigned int  SensorStat;   
-	volatile unsigned int  SensorStatpri;    		
-
+	volatile unsigned int  SensorStat; 
+	volatile unsigned int  SensorStatpri;       		
 	volatile unsigned int  changeSensorFlag;
 	volatile unsigned int  PicpSensorStat;  		
 	volatile unsigned int  PicpSensorStatpri; 		
@@ -474,6 +496,7 @@ typedef struct
 	/***** cmd osd part *****/
 	volatile unsigned int  DispGrp[ipc_eSen_Max];       	// eDispGrade
 	volatile unsigned int  DispColor[ipc_eSen_Max];  	// eOSDColor or eGRPColor
+	volatile unsigned char Imgalgosdrect;
 	
 	//don't know the usage
 	volatile unsigned int  TrkCoastCount;
@@ -497,6 +520,7 @@ typedef struct {
 	int OSD_text_font;
 	int OSD_text_size;
 	bool OSD_draw_show;
+	bool CROSS_draw_show;
 	int OSD_draw_color;
 	int CROSS_AXIS_WIDTH;
 	int CROSS_AXIS_HEIGHT;
@@ -699,8 +723,8 @@ typedef struct osdbuffer
 
 
 
-int ipc_settrack(unsigned int trackstatus, int trackposx, int trackposy);
-int ipc_gettrack(unsigned int* trackstatus, int* trackposx, int* trackposy);
+int ipc_settrack(unsigned int trackstatus, float trackposx, float trackposy);
+int ipc_gettrack(unsigned int* trackstatus, float* trackposx, float* trackposy);
 int ipc_setSensorstat(unsigned int unitFaultStat);
 int ipc_getSensorstat(unsigned int* unitFaultStat);
 int ipc_sendmsg(SENDST* Param,int Mesgthe );
