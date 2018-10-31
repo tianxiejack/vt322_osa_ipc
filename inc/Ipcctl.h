@@ -24,7 +24,7 @@ typedef enum
     sectrk, /*3*/
     enh, /*4*/
     mtd, /*5*/
-	mtdSelect,
+    mtdSelect,
     trkdoor, /*6*/
     posmove, /*7*/
     zoom, /*8*/
@@ -190,10 +190,10 @@ typedef enum ipc_Dram_MMTSelect
 
 typedef enum ipc_Dram_MtdSelect
 {
-	ipc_eMMT_No     = 0x00,
-	ipc_eMMT_Next   = 0x01,
-	ipc_eMMT_Prev   = 0x02,
-	ipc_eMMT_Select = 0x03,
+	ipc_eMTD_No     = 0x00,
+	ipc_eMTD_Next   = 0x01,
+	ipc_eMTD_Prev   = 0x02,
+	ipc_eMTD_Select = 0x03,
 } ipc_eMtdSelect;
 
 typedef enum ipc_Dram_DispGradeStat
