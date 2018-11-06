@@ -19,36 +19,36 @@
 typedef enum 
 {
     sensor,  /*0*/
-    pinp, /*1*/
-    trk, /*2*/
-    sectrk, /*3*/
-    enh, /*4*/
-    mtd, /*5*/
+    pinp,
+    trk,
+    sectrk,
+    enh,
+    mtd,
     mtdSelect,
-    trkdoor, /*6*/
-    posmove, /*7*/
-    zoom, /*8*/
-    autocheck, /*9*/
-    mmt,/*10*/
-    mmtselect,/*11*/
-    axismove,/*12*/
-    read_shm_trkpos,/*13*/
-    read_shm_config,/*14*/
-    read_shm_osd,/*15*/
-    read_shm_utctrk,/*16*/
-    read_shm_camera,/*17*/
-    elecZoom,/*18*/
-    exit_img,/*19*/
-    sensor_bind,/*20*/
-    sensor_video_trans,/*21*/
-    vframerate,/*22*/
-    vquality,/*23*/
+    trkdoor,
+    posmove,
+    zoom,
+    autocheck,/*10*/
+    mmt,
+    mmtselect,
+    axismove,
+    read_shm_trkpos,
+    read_shm_config,
+    read_shm_osd,
+    read_shm_utctrk,
+    read_shm_camera,
+    elecZoom,
+    exit_img,/*20*/
+    sensor_bind,
+    sensor_video_trans,
+    vframerate,
+    vquality,
     osdbuffer,
     acqBox,
     Iris,
     focus,
     exit_IrisAndFocus,
-    menu,
+    menu,/*30*/
     read_shm_lkosd,
     mmtLock,
     BoresightPos,
@@ -58,8 +58,9 @@ typedef enum
     ipcwordFont,
     ipcwordSize,
 	ipclosttime,
-    ipcresolution,
+    ipcresolution,/*40*/
     read_shm_osdtext,
+    switchtarget,
     invalid
 }CMD_ID;
 
