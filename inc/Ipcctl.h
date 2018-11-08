@@ -25,10 +25,12 @@ typedef enum
     enh,
     mtd,
     mtdSelect,
+    mtdnum,
+    mtdmode,
     trkdoor,
-    posmove,
+    posmove,/*10*/
     zoom,
-    autocheck,/*10*/
+    autocheck,
     mmt,
     mmtselect,
     axismove,
@@ -36,9 +38,9 @@ typedef enum
     read_shm_config,
     read_shm_osd,
     read_shm_utctrk,
-    read_shm_camera,
+    read_shm_camera,/*20*/
     elecZoom,
-    exit_img,/*20*/
+    exit_img,
     sensor_bind,
     sensor_video_trans,
     vframerate,
@@ -46,9 +48,9 @@ typedef enum
     osdbuffer,
     acqBox,
     Iris,
-    focus,
+    focus,/*30*/
     exit_IrisAndFocus,
-    menu,/*30*/
+    menu,
     read_shm_lkosd,
     mmtLock,
     BoresightPos,
@@ -56,9 +58,9 @@ typedef enum
     AcqPos,
     algosdrect,
     ipcwordFont,
-    ipcwordSize,
+    ipcwordSize,/*40*/
 	ipclosttime,
-    ipcresolution,/*40*/
+    ipcresolution,
     read_shm_osdtext,
     switchtarget,
     invalid
