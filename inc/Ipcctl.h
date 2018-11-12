@@ -68,6 +68,7 @@ typedef enum
     mtdoutput,
     mtdpolar,
     mtdtrktime,
+    setconfig,/*50*/
     invalid
 }CMD_ID;
 
@@ -429,6 +430,12 @@ typedef struct{
 typedef struct{
 	volatile unsigned int seconds;
 }CMD_MTDTRKTIME;
+
+typedef struct{
+	volatile unsigned char block;
+	volatile unsigned char field;
+	volatile float value;
+}CMD_SETCONFIG;
 
 typedef struct{
     unsigned char cmd_ID;
