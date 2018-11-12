@@ -69,9 +69,6 @@ typedef enum
     mtdpolar,
     mtdtrktime,
     setconfig,/*50*/
-    querypos,
-    speedloop,
-    acqPosAndZoom,
     invalid
 }CMD_ID;
 
