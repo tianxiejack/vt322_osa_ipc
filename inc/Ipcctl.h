@@ -72,6 +72,7 @@ typedef enum
     querypos,
     speedloop,
     acqPosAndZoom,
+    reset_swtarget_timer,
     invalid
 }CMD_ID;
 
