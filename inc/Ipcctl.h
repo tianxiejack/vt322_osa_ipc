@@ -307,13 +307,18 @@ typedef struct{
 }IPC_Handl;
 
 typedef struct{
-	int detectArea;
 	int detectNum;
 	int detectSpeed;
 	int tmpUpdateSpeed;
 	int tmpMaxPixel;
 	int tmpMinPixel;
 	int sensitivityThreshold;
+	int detectArea_X;
+	int detectArea_Y;
+	int detectArea_wide;
+	int detectArea_high;
+	int priority;
+	int alarm_delay;
 }CMD_Mtd_Frame;
 
 typedef struct{
