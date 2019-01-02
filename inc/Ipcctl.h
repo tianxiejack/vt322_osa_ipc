@@ -539,6 +539,9 @@ typedef struct
 	volatile int osdTextSize;
 	volatile int osdDrawColor;
 
+	volatile int ipcballComAddress;
+	volatile int ipcballComBaud;
+
 	/***** old status ,remaining tidy*****/	
 	volatile unsigned int  unitVerNum;      	// 1.23=>0x0123
 	volatile unsigned int  unitFaultStat;   		// bit0:tv input bit1:fr input bit2:avt21
