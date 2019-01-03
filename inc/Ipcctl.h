@@ -478,6 +478,7 @@ typedef struct{
 
 typedef struct{
 	volatile unsigned char resolution[ipc_eSen_Max];
+	volatile unsigned char outputresol;
 }CMD_IPCRESOLUTION;
 
 typedef struct{
