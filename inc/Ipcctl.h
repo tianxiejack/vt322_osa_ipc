@@ -75,6 +75,7 @@ typedef enum
     reset_swtarget_timer,
     mtdFrame,
     ballbaud,
+    sceneTrk,
     invalid
 }CMD_ID;
 
@@ -575,6 +576,8 @@ typedef struct
 	volatile unsigned int  AvtCfgSave;      	// eSaveMode
 	volatile unsigned int  AvtTrkCoast;
 	volatile unsigned int  TrkErrFeedback;  	// eTrkMode 
+
+	volatile unsigned int SceneAvtTrkStat; 
 
 	volatile float  trkerrx;
 	volatile float  trkerry;	
