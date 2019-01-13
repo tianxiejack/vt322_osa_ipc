@@ -615,7 +615,7 @@ typedef struct
 	volatile unsigned char 	MmtOffsetXY[20]; 		//not sure the func
 	
 } IMGSTATUS;
-
+const char chid = 5;
 typedef struct {
 	int MAIN_Sensor;	//13--0
 	int Timedisp_9;
@@ -625,9 +625,9 @@ typedef struct {
 	int OSD_text_font;
 	int OSD_text_size;
 	bool OSD_draw_show;
-	bool CROSS_draw_show;
+	bool CROSS_draw_show[chid];
 	bool osdUserShow;
-	bool osdBoxShow;
+	bool osdBoxShow[chid];
 	int OSD_draw_color;
 	int CROSS_AXIS_WIDTH;
 	int CROSS_AXIS_HEIGHT;
