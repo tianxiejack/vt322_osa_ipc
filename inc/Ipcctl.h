@@ -529,6 +529,8 @@ typedef struct
 	volatile bool crossDrawShow[CAMERACHID];
 	volatile bool osdUserShow;
 	volatile bool osdBoxShow[CAMERACHID];
+	volatile bool osdChidIDShow[CAMERACHID];
+	volatile bool osdChidNameShow[CAMERACHID];
 	volatile int osdTextColor;
 	volatile int osdTextAlpha;
 	volatile int osdTextFont;
@@ -629,6 +631,8 @@ typedef struct {
 	bool CROSS_draw_show[CAMERACHID];
 	bool osdUserShow;
 	bool osdBoxShow[CAMERACHID];
+	bool osdChidIDShow[CAMERACHID];
+	bool osdChidNmaeShow[CAMERACHID];
 	int OSD_draw_color;
 	int CROSS_AXIS_WIDTH;
 	int CROSS_AXIS_HEIGHT;
