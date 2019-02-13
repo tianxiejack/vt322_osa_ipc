@@ -813,7 +813,7 @@ typedef struct{
 }LKOSDSTATUS;
 
 typedef struct{
-	int IrisAndFocusAndExit
+	int IrisAndFocusAndExit;
 	int OSD_workMode;
 }OSD_ctrlParams;
 
