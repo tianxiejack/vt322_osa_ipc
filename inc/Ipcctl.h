@@ -80,6 +80,7 @@ typedef enum
     ipcjoyevent,
     refreshptz,
     josctrl,
+    workmode,
     invalid
 }CMD_ID;
 
