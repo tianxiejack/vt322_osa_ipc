@@ -674,6 +674,7 @@ typedef struct {
 	int OSD_text_alpha;
 	int OSD_text_font;
 	int OSD_text_size;
+	int OSD_workMode;
 	bool OSD_draw_show;
 	bool CROSS_draw_show[CAMERACHID];
 	bool osdUserShow;
