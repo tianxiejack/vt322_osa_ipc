@@ -81,6 +81,7 @@ typedef enum
     refreshptz,
     josctrl,
     workmode,
+    enter_gridmap_view,
     invalid
 }CMD_ID;
 
