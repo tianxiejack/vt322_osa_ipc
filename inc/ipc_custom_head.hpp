@@ -915,6 +915,7 @@ static int ipc_settrack(unsigned int trackstatus, float trackposx, float trackpo
 	IMGstatus->trkerrx=trackposx;
 	IMGstatus->trkerry=trackposy;
 	ipc_status_V();
+	ret = sharedMemoryUnlock(IpcHandl[IPC_SHA].IPCID);
 	return ret;
 }
 
