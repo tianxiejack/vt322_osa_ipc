@@ -30,7 +30,7 @@ typedef struct{
 
 extern std::vector <IPC_Handl_t> IpcHandl;
 
-void Ipc_create();
+int Ipc_create(); //success: 0 , error occur : -1
 void Ipc_destory();
 int ipc_sendmsg(int HandlID, SENDST* Param);
 int ipc_recvmsg(int HandlID ,SENDST* Param);

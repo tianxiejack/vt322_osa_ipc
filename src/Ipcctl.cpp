@@ -53,8 +53,9 @@ void  ipc_status_V()
 	semSignal(IpcHandl[IPC_SEM].IPCID,0);
 }
 
-void Ipc_create()
+int Ipc_create()
 {
+	int flag = 0;
 	if(IpcHandl.size())
 	{
 		key_t key;
@@ -78,11 +79,12 @@ void Ipc_create()
 					break;
 
 				default:
+					flag = -1;
 					break;					
 			}
 		}
 	}
-	return ;
+	return flag;
 }
 
 void Ipc_destory()
@@ -105,6 +107,7 @@ void Ipc_destory()
 			}
 		}
 	}
+	return ;
 }
 
 
