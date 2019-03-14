@@ -11,6 +11,11 @@ std::vector <IPC_Handl_t> IpcHandl;
 
 int ipc_sendmsg(SENDST* Param,int HandlID )
 {
+	ipc_sendmsg(HandlID,Param);
+}
+
+int ipc_sendmsg(int HandlID ,SENDST* Param)
+{
 	int ret;
 	Message msg;
 	char buffer[MESSAGE_SIZE];
@@ -23,12 +28,12 @@ int ipc_sendmsg(SENDST* Param,int HandlID )
 	return ret;
 }
 
-int ipc_sendmsg(int HandlID ,SENDST* Param)
+int ipc_recvmsg(SENDST* Param,int HandlID )
 {
-	ipc_sendmsg(Param,HandlID);
+	ipc_recvmsg(HandlID,Param);
 }
 
-int ipc_recvmsg(SENDST* Param,int HandlID )
+int ipc_recvmsg(int HandlID , SENDST* Param )
 {
 	int ret;
 	Message msg;
@@ -37,11 +42,6 @@ int ipc_recvmsg(SENDST* Param,int HandlID )
 	ret = messageQueueReceive(IpcHandl[HandlID].IPCID, &msg, mtype);
     memcpy(Param,msg.buffer,sizeof(SENDST));
 	return ret;
-}
-
-int ipc_recvmsg(int HandlID , SENDST* Param )
-{
-	ipc_recvmsg(Param,HandlID);
 }
 
 void  ipc_status_P()
