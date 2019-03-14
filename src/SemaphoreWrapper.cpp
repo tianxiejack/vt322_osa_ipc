@@ -3,16 +3,17 @@
 #include <sys/types.h>
 #include <unistd.h>
  #include <error.h>
+#include <string.h>
 
-key_t semKeyGet(char *path,int proj_id)
+key_t semKeyGet(std::string inPath,int proj_id)
 {
-
- key_t key = ftok(path,proj_id);
-    if(key < 0){
-        printf("%d:%s\n",errno,strerror(errno));
-        return -1;
-    }
-     return key;
+	const char* path = inPath.c_str();
+	key_t key = ftok(path,proj_id);
+	if(key < 0){
+		printf("%d:%s\n",errno,strerror(errno));
+		return -1;
+	}
+	return key;
 }
 
 int semCreate(key_t key, int number_of_sem)

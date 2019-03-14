@@ -2,6 +2,7 @@
 #define __IPCCTL_H_
 
 #include <vector>
+#include <string>
 
 #define PARAMLEN 164
 
@@ -14,7 +15,7 @@ typedef enum
 }IPC_Class;
 
 typedef struct{
-	char *name;
+	std::string name;
 	int Identify;
 	int Class;
 	int IPCID;

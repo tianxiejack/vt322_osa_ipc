@@ -2,9 +2,10 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include "errno.h"
+#include <string>
 
 /* Create and delete shared memory: */
-key_t sharedKeyGet(char *path,int proj_id);
+key_t sharedKeyGet(std::string inPath,int proj_id);
 int sharedMemoryGet(key_t key, int size);
 int sharedMemoryCreate(key_t key, int size);
 int sharedMemoryCreateOrGet(key_t key, int size);

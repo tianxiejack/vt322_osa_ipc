@@ -7,10 +7,11 @@
 /***************************************************
  * Section: Includes
  **************************************************/
-#include "MessageQueueWrapper.h"
-key_t messageKeyGet(char *path,int proj_id)
-{
+#include "MessageQueueWrapper.hpp"
 
+key_t messageKeyGet(std::string inPath,int proj_id)
+{
+ const char * path = inPath.c_str();
  key_t key = ftok(path,proj_id);
     if(key < 0){
         printf("%d:%s\n",errno,strerror(errno));

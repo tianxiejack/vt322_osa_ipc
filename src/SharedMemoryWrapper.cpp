@@ -3,8 +3,9 @@
 #include <string.h>
 #include "ipc_custom_head.hpp"
 
-key_t sharedKeyGet(char *path,int proj_id)
+key_t sharedKeyGet(std::string inPath,int proj_id)
 {
+	const char* path = inPath.c_str();
 	key_t key = ftok(path,proj_id);
 	if(key < 0)
 	{

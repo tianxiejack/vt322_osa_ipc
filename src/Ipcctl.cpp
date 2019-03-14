@@ -1,4 +1,4 @@
-#include "MessageQueueWrapper.h"
+#include "MessageQueueWrapper.hpp"
 #include "SharedMemoryWrapper.h"
 #include "SemaphoreWrapper.h"
 #include <sys/syscall.h>
@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include "ipc_custom_head.hpp"
 #include <vector>
+#include <string>
+#include <iostream>
 
 std::vector <IPC_Handl_t> IpcHandl;
 
@@ -52,7 +54,7 @@ void  ipc_status_V()
 {
 	semSignal(IpcHandl[IPC_SEM].IPCID,0);
 }
-
+using namespace std;
 int Ipc_create()
 {
 	int flag = 0;
@@ -64,6 +66,7 @@ int Ipc_create()
 			switch(IpcHandl[i].Class)
 			{
 				case IPC_Class_MSG:
+
 					key = messageKeyGet(IpcHandl[i].name,IpcHandl[i].Identify);
 					IpcHandl[i].IPCID = messageQueueCreate(key);
 					break;

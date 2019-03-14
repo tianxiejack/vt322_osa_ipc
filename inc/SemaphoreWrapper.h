@@ -7,7 +7,7 @@
 #include <sys/msg.h>
 #include <stdio.h>
 #include "errno.h"
-#include <string.h>
+#include <string>
 
 union semun
 {
@@ -17,7 +17,8 @@ union semun
                          /* Linux specific part: */
   struct seminfo *__buf; /* buffer for IPC_INFO */ 
 };
-key_t semKeyGet(char *path,int proj_id);
+
+key_t semKeyGet(std::string inPath,int proj_id);
 /* Create num_of_sem semaphores assoc. with the path. */
 /* Returns the semid */
 int semCreate(key_t key, int num_of_sem);

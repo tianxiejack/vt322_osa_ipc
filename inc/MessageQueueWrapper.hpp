@@ -45,8 +45,9 @@
 *****************************************************************/
 
 /* Message queue utilities */
-
-key_t messageKeyGet(std::string *inPath,int proj_id);
+#include <string>
+#include <iostream>
+key_t messageKeyGet(std::string inPath,int proj_id);
 int messageQueueGet(key_t key);
 int messageQueueCreate(key_t key);
 int messageQueueDelete(int qid);
