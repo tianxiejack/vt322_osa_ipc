@@ -1,4 +1,4 @@
-#include "MessageQueueWrapper.hpp"
+#include "MessageQueueWrapper.h"
 #include "SharedMemoryWrapper.h"
 #include "SemaphoreWrapper.h"
 #include <sys/syscall.h>
@@ -66,7 +66,6 @@ int Ipc_create()
 			switch(IpcHandl[i].Class)
 			{
 				case IPC_Class_MSG:
-
 					key = messageKeyGet(IpcHandl[i].name,IpcHandl[i].Identify);
 					IpcHandl[i].IPCID = messageQueueCreate(key);
 					break;

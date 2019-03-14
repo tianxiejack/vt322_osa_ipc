@@ -7,7 +7,7 @@
 /***************************************************
  * Section: Includes
  **************************************************/
-#include "MessageQueueWrapper.hpp"
+#include "MessageQueueWrapper.h"
 
 key_t messageKeyGet(std::string inPath,int proj_id)
 {

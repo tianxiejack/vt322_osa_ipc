@@ -7,6 +7,7 @@
 #include <string.h>
 #include "Message.h"
 #include "TimerWrapper.h"
+#include <string>
 
 /*****************************************************************
  * Class: messageQueueWrapper
@@ -46,7 +47,7 @@
 
 /* Message queue utilities */
 
-key_t messageKeyGet(std::string *inPath,int proj_id);
+key_t messageKeyGet(std::string inPath,int proj_id);
 int messageQueueGet(key_t key);
 int messageQueueCreate(key_t key);
 int messageQueueDelete(int qid);
