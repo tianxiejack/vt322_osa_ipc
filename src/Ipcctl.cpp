@@ -9,7 +9,7 @@
 
 std::vector <IPC_Handl_t> IpcHandl;
 
-int ipc_sendmsg(SENDST* Param,int Mesgthe )
+int ipc_sendmsg(SENDST* Param,int HandlID )
 {
 	int ret;
 	Message msg;
@@ -19,20 +19,31 @@ int ipc_sendmsg(SENDST* Param,int Mesgthe )
     memcpy(buffer,Param,sizeof(SENDST));
 	setMessage(&msg, buffer, MESSAGE_SIZE, mtype);
 	/* Send message: */
-	ret = messageQueueSend(IpcHandl[Mesgthe].IPCID, &msg);
+	ret = messageQueueSend(IpcHandl[HandlID].IPCID, &msg);
 	return ret;
 }
 
-int ipc_recvmsg(SENDST* Param,int Mesgthe )
+int ipc_sendmsg(int HandlID ,SENDST* Param)
+{
+	ipc_sendmsg(Param,HandlID);
+}
+
+int ipc_recvmsg(SENDST* Param,int HandlID )
 {
 	int ret;
 	Message msg;
 	int mtype=1;
 	clearMessage(&msg);
-	ret = messageQueueReceive(IpcHandl[Mesgthe].IPCID, &msg, mtype);
+	ret = messageQueueReceive(IpcHandl[HandlID].IPCID, &msg, mtype);
     memcpy(Param,msg.buffer,sizeof(SENDST));
 	return ret;
 }
+
+int ipc_recvmsg(int HandlID , SENDST* Param )
+{
+	ipc_recvmsg(Param,HandlID);
+}
+
 void  ipc_status_P()
 {
 	semWait(IpcHandl[IPC_SEM].IPCID,0);

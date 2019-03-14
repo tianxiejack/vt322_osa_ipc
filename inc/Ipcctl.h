@@ -30,15 +30,17 @@ typedef struct{
 
 extern std::vector <IPC_Handl_t> IpcHandl;
 
-
-int ipc_sendmsg(SENDST* Param,int Mesgthe );
-int ipc_recvmsg(SENDST* Param,int Mesgthe );
-void  ipc_status_P();
-void  ipc_status_V();
-
-
 void Ipc_create();
 void Ipc_destory();
+int ipc_sendmsg(int HandlID, SENDST* Param);
+int ipc_recvmsg(int HandlID ,SENDST* Param);
+
+
+//used to compability the old version
+int ipc_sendmsg(SENDST* Param,int HandlID);
+int ipc_recvmsg(SENDST* Param,int HandlID);
+void ipc_status_P();
+void ipc_status_V();
 
 
 #endif
