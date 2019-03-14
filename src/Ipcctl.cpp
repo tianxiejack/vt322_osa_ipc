@@ -69,8 +69,13 @@ int Ipc_create()
 					break;
 				case IPC_Class_SHA:
 					key = sharedKeyGet(IpcHandl[i].name,IpcHandl[i].Identify);
-					IpcHandl[i].IPCID = sharedMemoryCreateOrGet(key,IpcHandl[i].length);
-					IpcHandl[i].ptr =(void *)sharedMemoryAttach(IpcHandl[i].IPCID,IpcHandl[i].RWmode);				
+					if(IpcHandl[i].length > 0)
+					{
+						IpcHandl[i].IPCID = sharedMemoryCreateOrGet(key,IpcHandl[i].length);
+						IpcHandl[i].ptr =(void *)sharedMemoryAttach(IpcHandl[i].IPCID,IpcHandl[i].RWmode);				
+					}
+					else
+						flag = -1;
 					break;
 
 				case IPC_Class_SEM:
