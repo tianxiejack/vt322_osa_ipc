@@ -13,7 +13,8 @@ std::vector <IPC_Handl_t> IpcHandl;
 
 int ipc_sendmsg(SENDST* Param,int HandlID )
 {
-	ipc_sendmsg(HandlID,Param);
+	int ret = ipc_sendmsg(HandlID,Param);
+	return ret;
 }
 
 int ipc_sendmsg(int HandlID ,SENDST* Param)
@@ -32,7 +33,8 @@ int ipc_sendmsg(int HandlID ,SENDST* Param)
 
 int ipc_recvmsg(SENDST* Param,int HandlID )
 {
-	ipc_recvmsg(HandlID,Param);
+	int ret = ipc_recvmsg(HandlID,Param);
+	return ret;
 }
 
 int ipc_recvmsg(int HandlID , SENDST* Param )
@@ -54,7 +56,7 @@ void  ipc_status_V()
 {
 	semSignal(IpcHandl[IPC_SEM].IPCID,0);
 }
-using namespace std;
+
 int Ipc_create()
 {
 	int flag = 0;
